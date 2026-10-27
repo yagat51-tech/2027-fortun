@@ -1,0 +1,552 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>2027 流年速查</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;800&display=swap">
+<style>
+/* Layout: one narrow phone-first column. The four-pillar chart is the hero object; the consultation offer follows the free reading. */
+:root{
+  --bg:#ECEFEA; --surface:#F7F8F5; --soft:#E1E6E0; --fg:#1B2225; --muted:#586367; --line:#CFD5CF;
+  --accent:#A3342A; --cta-bg:#A3342A; --cta-fg:#FFFFFF;
+  --wood:#4A7750; --fire:#C9502F; --earth:#9C7230; --metal:#6B7A83; --water:#3667A0;
+  --serif:'Noto Serif TC','Songti TC','PMingLiU','Noto Serif CJK TC',serif;
+  --sans:'Noto Sans TC','PingFang TC','Microsoft JhengHei','Noto Sans CJK TC',system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#111617; --surface:#182022; --soft:#222C2F; --fg:#E7EAE5; --muted:#9AA6A8; --line:#2B3639;
+    --accent:#E27A68; --cta-bg:#C2463A; --cta-fg:#FFFFFF;
+    --wood:#86B98B; --fire:#EE8B64; --earth:#D6A85E; --metal:#AEBCC3; --water:#74A9E0;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#111617; --surface:#182022; --soft:#222C2F; --fg:#E7EAE5; --muted:#9AA6A8; --line:#2B3639;
+  --accent:#E27A68; --cta-bg:#C2463A; --cta-fg:#FFFFFF;
+  --wood:#86B98B; --fire:#EE8B64; --earth:#D6A85E; --metal:#AEBCC3; --water:#74A9E0;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--bg); color:var(--fg); font-family:var(--sans); font-size:15px; line-height:1.75;
+  padding-block:12px 48px;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));
+  padding-right:max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap{max-width:680px; margin-inline:auto; display:flex; flex-direction:column; gap:32px}
+h1,h2,h3,p,ul,ol,dl,dd,figure{margin:0}
+h1,h2{font-family:var(--serif); text-wrap:balance}
+:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+
+/* header */
+.brand{display:flex; align-items:center; gap:10px; font-weight:500; letter-spacing:.08em; font-size:14px}
+.seal{width:28px; height:28px; display:grid; place-items:center; background:var(--cta-bg); color:var(--cta-fg); font-family:var(--serif); font-weight:800; font-size:16px; border-radius:3px; line-height:1}
+h1{font-size:clamp(2.1rem, 9vw, 3rem); line-height:1.15; font-weight:800; margin-top:20px; letter-spacing:.02em}
+h1 em{font-style:normal; color:var(--accent)}
+.lede{margin-top:12px; color:var(--muted); max-width:30em}
+
+/* form */
+.card{background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:18px; display:flex; flex-direction:column; gap:14px}
+.fields{display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:14px}
+.field{display:flex; flex-direction:column; gap:6px; min-width:0}
+.field span{font-size:13px; color:var(--muted); letter-spacing:.06em}
+input,select{
+  width:100%; min-width:0; height:46px; font:inherit; font-size:16px; color:var(--fg); background:var(--bg);
+  border:1px solid var(--line); border-radius:4px; padding:0 12px;
+}
+.hint{font-size:13px; color:var(--muted)}
+.err{font-size:13px; color:var(--accent); font-weight:500}
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:48px; padding:0 22px;
+  font:inherit; font-weight:700; letter-spacing:.06em; border-radius:4px; cursor:pointer; text-decoration:none;
+  border:1px solid var(--cta-bg); background:var(--cta-bg); color:var(--cta-fg);
+}
+.btn.ghost{background:transparent; color:var(--fg); border-color:var(--fg)}
+.btn[disabled]{opacity:.45; cursor:not-allowed}
+
+.sample{font-size:13px; color:var(--muted); border:1px dashed var(--line); border-radius:4px; padding:8px 12px}
+
+/* results */
+#result{display:flex; flex-direction:column; gap:36px; outline:none}
+section{display:flex; flex-direction:column; gap:14px}
+h2{font-size:1.4rem; font-weight:800; line-height:1.3}
+h3{font-size:14px; font-weight:700; letter-spacing:.08em; color:var(--muted)}
+.eyebrow{font-size:13px; letter-spacing:.1em; color:var(--accent); font-weight:500}
+.meta{font-size:13px; color:var(--muted)}
+.warn{font-size:13px; border:1px solid var(--accent); color:var(--accent); border-radius:4px; padding:8px 12px}
+
+.pillars{display:grid; grid-template-columns:repeat(4, 1fr); background:var(--surface); border:1px solid var(--line); border-radius:6px; overflow:hidden}
+.pillar{display:flex; flex-direction:column; align-items:center; gap:2px; padding:14px 2px 12px; border-left:1px solid var(--line); min-width:0; text-align:center}
+.pillar:first-child{border-left:0}
+.pillar.day{background:var(--soft)}
+.p-label{font-size:12px; color:var(--muted); letter-spacing:.12em}
+.p-god{font-size:12px; color:var(--muted); min-height:1.5em; font-weight:500}
+.pillar.day .p-god{color:var(--accent); font-weight:700}
+.glyph{font-family:var(--serif); font-weight:800; font-size:clamp(2rem, 10.5vw, 2.9rem); line-height:1.15}
+.glyph.dim{color:var(--line)}
+.hid{margin-top:6px; font-size:12px; color:var(--muted); display:flex; gap:4px; justify-content:center; flex-wrap:wrap}
+.hid i{font-style:normal; font-weight:500}
+.el-wood{color:var(--wood)} .el-fire{color:var(--fire)} .el-earth{color:var(--earth)} .el-metal{color:var(--metal)} .el-water{color:var(--water)}
+
+.dm{display:flex; flex-direction:column; gap:2px}
+.dm strong{font-family:var(--serif); font-size:1.15rem}
+.els{display:flex; flex-direction:column; gap:8px}
+.el-row{display:grid; grid-template-columns:1.6em 1fr 1.6em; align-items:center; gap:10px; font-size:14px}
+.el-row b{font-family:var(--serif); font-weight:800}
+.bar{height:10px; background:var(--soft); border-radius:2px; overflow:hidden}
+.bar i{display:block; height:100%; border-radius:2px}
+.bar .b-wood{background:var(--wood)} .bar .b-fire{background:var(--fire)} .bar .b-earth{background:var(--earth)} .bar .b-metal{background:var(--metal)} .bar .b-water{background:var(--water)}
+.el-row span{text-align:right; font-variant-numeric:tabular-nums; color:var(--muted)}
+
+.chips{display:flex; flex-wrap:wrap; gap:8px}
+.chip{font-size:13px; border:1px solid var(--line); border-radius:999px; padding:2px 12px; background:var(--surface)}
+.chip.hot{border-color:var(--accent); color:var(--accent); font-weight:500}
+.theme{font-size:1.7rem}
+.facets{display:flex; flex-direction:column}
+.facet{display:grid; grid-template-columns:3.2em 1fr; gap:12px; padding:12px 0; border-top:1px solid var(--line)}
+.facet:last-child{border-bottom:1px solid var(--line)}
+.facet dt{font-family:var(--serif); font-weight:800; color:var(--accent)}
+.facet dd{min-width:0}
+.notes{display:flex; flex-direction:column; gap:10px; padding-left:1.2em; color:var(--fg)}
+.notes li::marker{color:var(--accent)}
+
+/* offer */
+.includes{list-style:none; padding:0; display:flex; flex-direction:column}
+.includes li{padding:12px 0 12px 18px; border-top:1px solid var(--line); position:relative}
+.includes li:last-child{border-bottom:1px solid var(--line)}
+.includes li::before{content:""; position:absolute; left:2px; top:1.35em; width:7px; height:7px; background:var(--accent)}
+.includes strong{display:block; font-weight:700}
+.includes span{color:var(--muted); font-size:14px}
+
+.prices{display:flex; flex-direction:column}
+.price-row{display:grid; grid-template-columns:1fr auto; gap:2px 16px; padding:14px 0; border-top:1px solid var(--line); align-items:baseline}
+.price-row:last-child{border-bottom:1px solid var(--line)}
+.price-row .name{font-family:var(--serif); font-weight:800; font-size:1.1rem; min-width:0}
+.price-row .tag{font-family:var(--sans); font-size:12px; font-weight:500; color:var(--accent); border:1px solid var(--accent); border-radius:999px; padding:0 8px; margin-left:8px; white-space:nowrap}
+.price-row .amt{font-family:var(--serif); font-weight:800; font-size:1.35rem; font-variant-numeric:tabular-nums; grid-row:1 / span 2; grid-column:2; align-self:center}
+.price-row .desc{font-size:14px; color:var(--muted); min-width:0}
+
+.steps{list-style:none; padding:0; display:flex; flex-direction:column; gap:12px; counter-reset:s}
+.steps li{display:grid; grid-template-columns:2rem 1fr; gap:10px; counter-increment:s}
+.steps li::before{content:counter(s); font-family:var(--serif); font-weight:800; font-size:1.3rem; color:var(--accent); line-height:1.4}
+.summary{background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:14px; font-size:14px; white-space:pre-wrap; overflow-wrap:anywhere; font-family:var(--sans)}
+.summary.empty{color:var(--muted)}
+.actions{display:flex; flex-wrap:wrap; gap:10px}
+.actions .btn{flex:1 1 200px}
+
+footer{font-size:12.5px; color:var(--muted); display:flex; flex-direction:column; gap:8px; border-top:1px solid var(--line); padding-top:16px}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="brand"><span class="seal" aria-hidden="true">靜</span><span id="brandName"></span></div>
+    <h1>2027 <em>丁未年</em><br>流年速查</h1>
+    <p class="lede">輸入國曆生日，馬上看到你的八字命盤，以及 2027 年的大方向。</p>
+  </header>
+
+  <form id="f" class="card" novalidate>
+    <div class="fields">
+      <label class="field" for="birth"><span>國曆生日</span>
+        <input id="birth" type="date" min="1940-01-01" value="1995-08-17" required>
+      </label>
+      <label class="field" for="hour"><span>出生時辰（選填）</span>
+        <select id="hour">
+          <option value="">不確定，先不看時柱</option>
+          <option value="0L">子時 23:00–23:59</option>
+          <option value="0">子時 00:00–00:59</option>
+          <option value="1">丑時 01:00–02:59</option>
+          <option value="2">寅時 03:00–04:59</option>
+          <option value="3">卯時 05:00–06:59</option>
+          <option value="4">辰時 07:00–08:59</option>
+          <option value="5">巳時 09:00–10:59</option>
+          <option value="6">午時 11:00–12:59</option>
+          <option value="7">未時 13:00–14:59</option>
+          <option value="8">申時 15:00–16:59</option>
+          <option value="9">酉時 17:00–18:59</option>
+          <option value="10">戌時 19:00–20:59</option>
+          <option value="11">亥時 21:00–22:59</option>
+        </select>
+      </label>
+    </div>
+    <p class="hint">請填國曆（陽曆）生日。不知道時辰也能查，只是不會顯示時柱。</p>
+    <p class="err" id="err" role="alert" hidden></p>
+    <button class="btn" type="submit">查看我的命盤</button>
+  </form>
+
+  <p class="sample" id="sampleNote">這是範例命盤（1995 年 8 月 17 日）。換成你的生日，再按「查看我的命盤」。</p>
+
+  <main id="result" tabindex="-1" aria-live="polite">
+    <section aria-labelledby="h-chart">
+      <h2 id="h-chart">你的八字命盤</h2>
+      <p class="meta" id="chartMeta"></p>
+      <div class="pillars" id="pillars"></div>
+      <p class="warn" id="termWarn" hidden></p>
+      <div class="dm" id="dmLine"></div>
+      <h3>五行分布</h3>
+      <div class="els" id="els"></div>
+      <p class="meta" id="elsNote"></p>
+    </section>
+
+    <section aria-labelledby="h-year">
+      <p class="eyebrow" id="yearEyebrow">2027 丁未年</p>
+      <h2 class="theme" id="h-year"></h2>
+      <div class="chips" id="chips"></div>
+      <p id="yearSum"></p>
+      <dl class="facets" id="facets"></dl>
+      <ul class="notes" id="notes"></ul>
+      <p class="meta">這是簡約版：只看你的日主與 2027 年的關係，還沒有納入大運、喜用神與整張命盤的格局。</p>
+    </section>
+  </main>
+
+  <section aria-labelledby="h-inc">
+    <p class="eyebrow">想看更完整</p>
+    <h2 id="h-inc">進一步諮詢可以看到</h2>
+    <ul class="includes" id="includes"></ul>
+  </section>
+
+  <section aria-labelledby="h-price">
+    <h2 id="h-price">服務價目表</h2>
+    <div class="prices" id="prices"></div>
+  </section>
+
+  <section aria-labelledby="h-book">
+    <h2 id="h-book">怎麼預約</h2>
+    <ol class="steps">
+      <li><span>複製下方的命盤摘要。</span></li>
+      <li><span>到 IG 私訊我，貼上摘要，並輸入關鍵字「<b id="kw"></b>」。</span></li>
+      <li><span>確認想聊的方案與時間，我會回覆可預約的時段。</span></li>
+    </ol>
+    <div class="summary empty" id="summary"></div>
+    <p class="meta" id="copyHint"></p>
+    <div class="actions">
+      <button class="btn ghost" type="button" id="copyBtn">複製命盤摘要</button>
+      <a class="btn" id="igBtn" href="#" target="_blank" rel="noopener">前往 IG 私訊</a>
+    </div>
+  </section>
+
+  <footer>
+    <p id="igText"></p>
+    <p>本頁內容為命理參考與生活提醒，不能取代醫療、法律或財務專業意見。八字依國曆生日與節氣推算；未填時辰時不顯示時柱，生日落在節氣交接日前後者，建議以出生時刻再確認。</p>
+  </footer>
+</div>
+
+<script>
+/* ===== 可自行修改的設定（價目與內容為範例，上線前請改成正式資訊） ===== */
+var CONFIG = {
+  brand: '靜享好運能量圈',
+  ig: 'zxc8505212628',
+  keyword: '2027流年',
+  includes: [
+    ['完整的八字命盤解析', '這一頁只有大方向，諮詢時會對照你的整張命盤，指點迷津。'],
+    ['大運與流年運勢解析報告', '從十年大運看到 2027 丁未年，整體走向一次看清楚。'],
+    ['每月運勢報告', '哪幾個月適合衝刺、哪幾個月適合守成與休息。'],
+    ['財運、事業、健康、貴人、感情', '逐項詳談，轉職、投資、感情決定都能問。'],
+    ['整年度無限次諮詢', '選擇流年運勢解析，全年遇到問題都能再來問。'],
+    ['感情合盤情絲解析', '兩個人的關係與桃花運勢，可另外預約合盤。']
+  ],
+  services: [
+    { name: '單次項目擇一諮詢', tag: '', price: '$800', desc: '財運、事業、健康、貴人、感情，擇一詳談。' },
+    { name: '八字命盤全解析', tag: '', price: '$1800', desc: '指點迷津、完整解析、每月運勢報告。' },
+    { name: '感情合盤情絲解析', tag: '', price: '$2800', desc: '男女之間關係情絲判定、感情桃花運勢解析。' },
+    { name: '流年運勢解析', tag: '2027 推薦', price: '$3600', desc: '大運流年運勢解析報告，加整年度無限次諮詢。' },
+    { name: '學習八字命理', tag: '', price: '$9800', desc: '終生學習，含初、中、高階級班，實體課或線上課程擇一教學。' }
+  ]
+};
+
+/*CALC_START*/
+var STEMS = ['甲','乙','丙','丁','戊','己','庚','辛','壬','癸'];
+var BRANCHES = ['子','丑','寅','卯','辰','巳','午','未','申','酉','戌','亥'];
+var ZODIAC = ['鼠','牛','虎','兔','龍','蛇','馬','羊','猴','雞','狗','豬'];
+var STEM_EL = [0,0,1,1,2,2,3,3,4,4];
+var BRANCH_EL = [4,2,0,0,2,1,1,2,3,3,2,4];
+var EL_NAME = ['木','火','土','金','水'];
+var EL_ID = ['wood','fire','earth','metal','water'];
+var HIDDEN = [[9],[5,9,7],[0,2,4],[1],[4,1,9],[2,6,4],[3,5],[5,3,1],[6,8,4],[7],[4,7,3],[8,0]];
+var TERM_NAME = ['小寒','立春','驚蟄','清明','立夏','芒種','小暑','立秋','白露','寒露','立冬','大雪'];
+var C20 = [6.11,4.6295,6.3826,5.59,6.318,6.5,7.928,8.35,8.44,9.098,8.218,7.9];
+var C21 = [5.4055,3.87,5.63,4.81,5.52,5.678,7.108,7.5,7.646,8.318,7.438,7.18];
+var MSTART = [11,0,1,2,3,4,5,6,7,8,9,10];
+
+function termDay(y, i){
+  var Y, C;
+  if (y >= 2001){ Y = y % 100; C = C21[i]; }
+  else if (y === 2000){ Y = 100; C = C20[i]; }
+  else { Y = y % 100; C = C20[i]; }
+  var L = i < 2 ? Math.floor((Y - 1) / 4) : Math.floor(Y / 4);
+  return Math.floor(Y * 0.2422 + C) - L;
+}
+function mod(n, m){ return ((n % m) + m) % m; }
+
+function tenGod(dm, o){
+  var diff = mod(STEM_EL[o] - STEM_EL[dm], 5);
+  var same = (dm % 2) === (o % 2);
+  var t = [['比肩','劫財'],['食神','傷官'],['偏財','正財'],['七殺','正官'],['偏印','正印']][diff];
+  return same ? t[0] : t[1];
+}
+
+function calcChart(y, m, d, hour){
+  var ti = m - 1, td = termDay(y, ti);
+  var by = y;
+  if (m < 2 || (m === 2 && d < td)) by = y - 1;
+  var ys = mod(by - 4, 10), yb = mod(by - 4, 12);
+  var mi = MSTART[m - 1];
+  if (d < td) mi = (mi + 11) % 12;
+  var ms = (((ys % 5) * 2 + 2) + mi) % 10, mb = (mi + 2) % 12;
+  var days = Math.floor(Date.UTC(y, m - 1, d) / 86400000);
+  var idx = mod(days + 2440588 + 49, 60);
+  var ds = idx % 10, db = idx % 12;
+  var hp = null;
+  if (hour){
+    var base = hour.late ? (ds + 1) % 10 : ds;
+    hp = { s: ((base % 5) * 2 + hour.b) % 10, b: hour.b };
+  }
+  return {
+    y: y, m: m, d: d, baziYear: by,
+    year: { s: ys, b: yb }, month: { s: ms, b: mb }, day: { s: ds, b: db }, hour: hp,
+    term: { name: TERM_NAME[ti], day: td, near: Math.abs(d - td) <= 1 }
+  };
+}
+
+function countElements(c){
+  var n = [0,0,0,0,0];
+  [c.year, c.month, c.day, c.hour].forEach(function(p){
+    if (!p) return;
+    n[STEM_EL[p.s]]++; n[BRANCH_EL[p.b]]++;
+  });
+  return n;
+}
+
+/* 2027 丁未：天干丁(3)，地支未(7)，主氣己(5) */
+function relationToWei(b){
+  if (b === 7) return 'same';
+  if (b === 6) return 'he';
+  if (b === 1) return 'chong';
+  if (b === 0) return 'hai';
+  if (b === 10) return 'xing';
+  if (b === 3 || b === 11) return 'banhe';
+  return null;
+}
+/*CALC_END*/
+
+var TG = {
+  '比肩': { kw:'自主與同伴', title:'同伴與自我主張',
+    sum:'今年和你同類的能量增強，朋友、同事、同行變多，你也更想照自己的步調做事。適合合作與結盟，但各自堅持時要留意拉扯。',
+    career:'合夥、同業交流會帶來助力，避免單打獨鬥硬撐。', wealth:'收入多靠人脈與共享，與人合資或借貸時，先把界線談清楚。', love:'重視平等與各自的空間，彼此尊重，感情會更穩。' },
+  '劫財': { kw:'競爭與人情', title:'競爭與人情',
+    sum:'同類能量強，但帶著競爭味。機會不少，與人比較、分攤、應酬的壓力也跟著變多。',
+    career:'競爭者增加，要靠專業與差異化讓自己被看見。', wealth:'容易有人情開銷與臨時支出，大額投資先冷靜再決定。', love:'容易出現比較心或第三方話題，坦誠溝通比試探有效。' },
+  '食神': { kw:'表達與享受', title:'表達與享受',
+    sum:'才華與靈感比較容易被看見，適合輸出作品、分享內容，生活節奏也想慢下來享受。',
+    career:'創作、教學、內容型工作有發揮空間。', wealth:'靠專長變現的機會增加，細水長流型的收入較順。', love:'相處輕鬆自然，溫柔的表達會讓關係升溫。' },
+  '傷官': { kw:'創意與直言', title:'突破與直言',
+    sum:'想改變現況、不願被框住，創意容易爆發，同時也容易話說得太直、挑戰權威。',
+    career:'適合轉型、創新或自己出來做，與主管、同事的溝通要多斟酌。', wealth:'靠技能與創意獲利，要留意衝動消費與口舌是非。', love:'想法多、要求高，話留三分餘地，感情會更順。' },
+  '偏財': { kw:'機會與流動', title:'機會與流動',
+    sum:'外來的機會、斜槓與額外收入的氣出現，現金流動比往年大。',
+    career:'業務、合作案、多線並進有利，但戰線拉太長會分散精力。', wealth:'進出都快，先設好預算與停損點。', love:'緣分比較主動出現，單身者社交活躍；穩定交往者留意分心。' },
+  '正財': { kw:'穩定與累積', title:'穩紮穩打',
+    sum:'今年重視實際成果，努力容易換成穩定回報，適合累積、儲蓄與長期規劃。',
+    career:'本業有踏實的進展，適合把基礎打牢。', wealth:'正財穩，收入較可預期，適合建立理財習慣。', love:'重視承諾與生活安定，適合談到下一步。' },
+  '七殺': { kw:'壓力與突破', title:'壓力與突破',
+    sum:'外在壓力與挑戰比較明顯，會被推著成長。扛得住的話，容易磨出實力與名聲。',
+    career:'責任加重、競爭或變動較大，需要明確的界線與休息。', wealth:'投入大於回收的階段，量力而為，避開高風險操作。', love:'互動容易起伏或強勢，先照顧好自己的狀態，再談關係。' },
+  '正官': { kw:'責任與名分', title:'名分與責任',
+    sum:'規則、職位、名聲的氣上升，適合在體制內被看見，爭取晉升或認證。',
+    career:'升遷、考核、證照有機會，守規矩、穩穩做就出成績。', wealth:'收入跟著職位與責任走，以穩健為主。', love:'正式的關係與承諾比較有機會，適合談婚嫁或公開關係。' },
+  '偏印': { kw:'內省與鑽研', title:'獨處與鑽研',
+    sum:'想法偏向內省與冷門興趣，適合學習特殊技能、做研究，但也容易想太多。',
+    career:'適合進修、轉換跑道前的準備，成果需要時間醞釀。', wealth:'財運偏慢熱，先投資自己的能力。', love:'容易沉浸在自己的世界，主動分享心情能減少誤會。' },
+  '正印': { kw:'貴人與學習', title:'貴人與充電',
+    sum:'長輩、貴人、學習與證照的氣旺，適合進修、休養，也比較容易得到支持。',
+    career:'有人提拔，適合考證照、拿學位、沉澱實力。', wealth:'偏向守成，穩定為主，不急著衝刺。', love:'被關心、被照顧的感覺強，留意過度依賴。' }
+};
+var DM_IMG = {
+  0:['大樹','挺直、有抱負'], 1:['花草','柔韌、善於適應'], 2:['太陽','熱情、光明外放'], 3:['燭火','溫暖、細膩專注'],
+  4:['高山','穩重、能承載'], 5:['田園','包容、務實'], 6:['刀劍','果斷、重義氣'], 7:['珠玉','精緻、重品味'],
+  8:['江海','靈活、視野開闊'], 9:['雨露','敏感、直覺細膩']
+};
+var PILLAR = [
+  ['年柱','祖上與外在環境'], ['月柱','事業與社會位置'], ['日柱','自己與感情（配偶宮）'], ['時柱','子女、晚輩與長期計畫']
+];
+var REL_CHIP = { same:'伏吟', he:'午未合', chong:'丑未沖', hai:'子未害', xing:'戌未刑', banhe:'半合' };
+var REL_CHIP_YEAR = { same:'本命年・值太歲', he:'午未合・合太歲', chong:'丑未沖・沖太歲', hai:'子未害・害太歲', xing:'戌未刑・刑太歲', banhe:'半合' };
+
+function $(id){ return document.getElementById(id); }
+function glyphEl(ch, el){ return '<span class="glyph el-' + EL_ID[el] + '">' + ch + '</span>'; }
+
+function pillarHTML(label, p, isDay, dm){
+  if (!p){
+    return '<div class="pillar"><span class="p-label">' + label + '</span><span class="p-god">—</span>' +
+      '<span class="glyph dim">—</span><span class="glyph dim">—</span><span class="hid">未填時辰</span></div>';
+  }
+  var god = isDay ? '日主' : tenGod(dm, p.s);
+  var hid = HIDDEN[p.b].map(function(h){ return '<i class="el-' + EL_ID[STEM_EL[h]] + '">' + STEMS[h] + '</i>'; }).join('');
+  return '<div class="pillar' + (isDay ? ' day' : '') + '"><span class="p-label">' + label + '</span>' +
+    '<span class="p-god">' + god + '</span>' +
+    glyphEl(STEMS[p.s], STEM_EL[p.s]) + glyphEl(BRANCHES[p.b], BRANCH_EL[p.b]) +
+    '<span class="hid" title="地支藏干">' + hid + '</span></div>';
+}
+
+var state = { chart: null, sample: true, hourText: '' };
+
+function render(c, hourText){
+  var dm = c.day.s;
+  state.chart = c; state.hourText = hourText;
+  var zod = ZODIAC[c.year.b];
+
+  $('chartMeta').textContent = '國曆 ' + c.y + ' 年 ' + c.m + ' 月 ' + c.d + ' 日 · ' + (hourText || '未填時辰') + ' · 生肖屬' + zod + '（以立春為界）';
+  $('pillars').innerHTML =
+    pillarHTML('年柱', c.year, false, dm) + pillarHTML('月柱', c.month, false, dm) +
+    pillarHTML('日柱', c.day, true, dm) + pillarHTML('時柱', c.hour, false, dm);
+
+  var warn = $('termWarn');
+  if (c.term.near){
+    warn.hidden = false;
+    warn.textContent = '你的生日接近「' + c.term.name + '」（約 ' + c.m + ' 月 ' + c.term.day + ' 日），月柱' + (c.m <= 2 ? '與年柱' : '') + '可能要依出生時刻再確認。';
+  } else { warn.hidden = true; }
+
+  var img = DM_IMG[dm];
+  $('dmLine').innerHTML = '<strong class="el-' + EL_ID[STEM_EL[dm]] + '">日主 ' + STEMS[dm] + EL_NAME[STEM_EL[dm]] + '</strong>' +
+    '<span class="meta">像' + img[0] + '，' + img[1] + '。日主是八字裡代表「你自己」的那個字。</span>';
+
+  var n = countElements(c), total = n.reduce(function(a, b){ return a + b; }, 0), max = Math.max.apply(null, n), min = Math.min.apply(null, n);
+  $('els').innerHTML = n.map(function(v, i){
+    return '<div class="el-row"><b class="el-' + EL_ID[i] + '">' + EL_NAME[i] + '</b><div class="bar"><i class="b-' + EL_ID[i] + '" style="width:' + (total ? Math.round(v / total * 100) : 0) + '%"></i></div><span>' + v + '</span></div>';
+  }).join('');
+  var strong = EL_NAME.filter(function(_, i){ return n[i] === max; }).join('、');
+  var weak = EL_NAME.filter(function(_, i){ return n[i] === min; }).join('、');
+  $('elsNote').textContent = '最旺：' + strong + (min === 0 ? '；缺：' + weak : '；最弱：' + weak) + '。（共計 ' + total + ' 個字）';
+
+  /* 2027 */
+  var tgS = tenGod(dm, 3), tgB = tenGod(dm, 5), t = TG[tgS];
+  $('yearEyebrow').textContent = '2027 丁未年 · 天干丁火、地支未土 · 生肖羊';
+  $('h-year').textContent = '你的 2027：' + t.title;
+  var chips = ['<span class="chip hot">流年天干 · ' + tgS + '</span>', '<span class="chip">底層 · ' + TG[tgB].kw + '</span>'];
+  var notes = [];
+  [c.year, c.month, c.day, c.hour].forEach(function(p, i){
+    if (!p) return;
+    var rel = relationToWei(p.b);
+    if (!rel) return;
+    var name = PILLAR[i][0], dom = PILLAR[i][1], txt;
+    var chip = (i === 0 ? REL_CHIP_YEAR : REL_CHIP)[rel];
+    if (rel === 'banhe') chip = BRANCHES[p.b] + '未' + (i === 0 ? '半合' : '半合');
+    chips.push('<span class="chip hot">' + name + ' ' + chip + '</span>');
+    if (rel === 'same') txt = i === 0 ? '你的生肖與 2027 年同為羊，是本命年（值太歲）。傳統上建議穩中求變，留意健康與情緒，也可以在年初做祈福安心。' : name + '（' + dom + '）與流年同為未，這個領域的課題容易重複出現，也比較有感觸。';
+    if (rel === 'he') txt = name + '（' + dom + '）與流年相合，這個領域容易得到助力，推進起來比較順。';
+    if (rel === 'chong') txt = name + '（' + dom + '）與流年相沖，這個領域容易有變動或需要調整，提早規劃能減少衝擊。';
+    if (rel === 'hai') txt = name + '（' + dom + '）與流年相害，留意小摩擦與誤會，話說清楚就能化解。';
+    if (rel === 'xing') txt = name + '（' + dom + '）與流年相刑，壓力容易在心裡累積，記得給自己緩衝與出口。';
+    if (rel === 'banhe') txt = name + '（' + dom + '）與流年半合木，有合作或融入新環境的機會，需要主動推一把才會成局。';
+    notes.push(txt);
+  });
+  if (!notes.length) notes.push('你的命盤地支與 2027 年沒有明顯的合、沖、刑、害，整體變動較少，節奏偏平穩。');
+  var fire = n[1];
+  notes.push(fire === 0 ? '你的命盤沒有火，2027 年火氣入局，容易有被點燃的感覺，是啟動、曝光與行動的好機會。'
+    : fire >= 3 ? '你的命盤本來火氣就偏旺，今年再加一層火，要留意急躁、熬夜與情緒起伏，適度降溫與休息。'
+    : '你的命盤火氣屬中等，2027 年火土並行，適合穩定推進手上的計畫。');
+  $('chips').innerHTML = chips.join('');
+  $('yearSum').textContent = t.sum + '（流年天干丁火對你的日主來說是「' + tgS + '」。）';
+  $('facets').innerHTML =
+    '<div class="facet"><dt>事業</dt><dd>' + t.career + '</dd></div>' +
+    '<div class="facet"><dt>財運</dt><dd>' + t.wealth + '</dd></div>' +
+    '<div class="facet"><dt>感情</dt><dd>' + t.love + '</dd></div>';
+  $('notes').innerHTML = notes.map(function(x){ return '<li>' + x + '</li>'; }).join('');
+
+  renderSummary();
+}
+
+function summaryText(){
+  var c = state.chart, dm = c.day.s;
+  function pil(p){ return p ? STEMS[p.s] + BRANCHES[p.b] : '未填'; }
+  return '我想預約 2027 流年諮詢\n' +
+    '國曆生日：' + c.y + ' 年 ' + c.m + ' 月 ' + c.d + ' 日（' + (state.hourText || '時辰未填') + '）\n' +
+    '八字：' + pil(c.year) + '　' + pil(c.month) + '　' + pil(c.day) + '　' + pil(c.hour) + '\n' +
+    '日主：' + STEMS[dm] + EL_NAME[STEM_EL[dm]] + '　生肖：' + ZODIAC[c.year.b] + '\n' +
+    '最想問的主題：';
+}
+function renderSummary(){
+  var box = $('summary'), btn = $('copyBtn');
+  if (state.sample){
+    box.className = 'summary empty';
+    box.textContent = '輸入你的生日後，這裡會自動產生可以直接貼給我的命盤摘要。';
+    btn.disabled = true;
+    $('copyHint').textContent = '先在最上方查詢你的命盤，才能複製摘要。';
+  } else {
+    box.className = 'summary';
+    box.textContent = summaryText();
+    btn.disabled = false;
+    $('copyHint').textContent = '最後一行寫上你最想問的主題（事業、財運、感情或其他）。';
+  }
+}
+
+var flashTimer;
+function flash(msg){
+  var b = $('copyBtn'); b.textContent = msg;
+  clearTimeout(flashTimer);
+  flashTimer = setTimeout(function(){ b.textContent = '複製命盤摘要'; }, 2200);
+}
+$('copyBtn').addEventListener('click', function(){
+  var txt = $('summary').textContent;
+  function fallback(){
+    try {
+      var r = document.createRange(); r.selectNodeContents($('summary'));
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+    } catch (e) {}
+    flash('已選取，請長按複製');
+  }
+  try {
+    navigator.clipboard.writeText(txt).then(function(){ flash('已複製'); }, fallback);
+  } catch (e) { fallback(); }
+});
+
+function readForm(){
+  var v = $('birth').value, err = $('err');
+  var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(v);
+  function bad(msg){ err.textContent = msg; err.hidden = false; return null; }
+  if (!m) return bad('請先選擇你的國曆生日。');
+  var y = +m[1], mo = +m[2], d = +m[3];
+  if (y < 1940) return bad('目前可查詢 1940 年以後出生的生日。');
+  var dt = new Date(Date.UTC(y, mo - 1, d));
+  if (dt.getUTCMonth() !== mo - 1) return bad('這個日期不存在，請再確認一次。');
+  if (dt.getTime() > Date.now() + 86400000) return bad('生日不能是未來的日期。');
+  err.hidden = true;
+  var hv = $('hour').value, hour = null, hourText = '';
+  if (hv !== ''){
+    hour = { b: parseInt(hv, 10), late: /L$/.test(hv) };
+    hourText = $('hour').options[$('hour').selectedIndex].text;
+  }
+  return { c: calcChart(y, mo, d, hour), hourText: hourText };
+}
+
+$('f').addEventListener('submit', function(e){
+  e.preventDefault();
+  var r = readForm();
+  if (!r) return;
+  state.sample = false;
+  $('sampleNote').hidden = true;
+  render(r.c, r.hourText);
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var el = $('result');
+  el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+  el.focus({ preventScroll: true });
+});
+
+/* static content from CONFIG */
+$('brandName').textContent = CONFIG.brand;
+$('kw').textContent = CONFIG.keyword;
+$('igBtn').href = 'https://www.instagram.com/' + CONFIG.ig + '/';
+$('igText').textContent = CONFIG.brand + ' · Instagram @' + CONFIG.ig;
+$('includes').innerHTML = CONFIG.includes.map(function(x){ return '<li><strong>' + x[0] + '</strong><span>' + x[1] + '</span></li>'; }).join('');
+$('prices').innerHTML = CONFIG.services.map(function(s){
+  return '<div class="price-row"><div class="name">' + s.name + (s.tag ? '<span class="tag">' + s.tag + '</span>' : '') + '</div>' +
+    '<div class="amt">' + s.price + '</div><div class="desc">' + s.desc + '</div></div>';
+}).join('');
+
+(function(){
+  var t = new Date(), pad = function(n){ return (n < 10 ? '0' : '') + n; };
+  $('birth').max = t.getFullYear() + '-' + pad(t.getMonth() + 1) + '-' + pad(t.getDate());
+})();
+render(calcChart(1995, 8, 17, null), '');
+</script>
+
+</body></html>
